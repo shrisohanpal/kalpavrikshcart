@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, Container, Form, Button, FormControl, Row, Col } from 'react-bootstrap'
-import { Drawer, List, ListItem, ListItemText } from '@material-ui/core';
+import { Divider, Drawer, List, ListItem, ListItemText } from '@material-ui/core';
 
 const Header = () =>
 {
@@ -57,6 +57,48 @@ const Header = () =>
             <Drawer anchor='left' open={drawerOpen} onClose={() => { setDrawerOpen(false) }}>
                 <List style={{ width: 250 }}>
                     <ListItem>
+                        <text style={{ fontWeight: 'bold', fontSize: 20 }}>Kalpavrikshcart</text>
+                        <Button className='ml-auto' onClick={() => setDrawerOpen(false)}><i className='fas fa-times' /></Button>
+                    </ListItem>
+                    <Divider />
+                    <ListItem />
+                    {
+                        userInfo && userInfo.isAdmin && (
+                            <>
+                                <ListItem>
+                                    <text style={{ fontWeight: 'bold', fontSize: 20 }}>Admin Options</text>
+                                </ListItem>
+                                <ListItem button>
+                                    <LinkContainer to='/admin/userlist'>
+                                        <ListItemText primary="Users List" />
+                                    </LinkContainer>
+                                </ListItem>
+                                <ListItem button>
+                                    <LinkContainer to='/admin/categorylist'>
+                                        <ListItemText primary="Categories" />
+                                    </LinkContainer>
+                                </ListItem>
+                                <ListItem button>
+                                    <LinkContainer to='/admin/shoplist'>
+                                        <ListItemText primary="Shops" />
+                                    </LinkContainer>
+                                </ListItem>
+                                <ListItem button>
+                                    <LinkContainer to='/admin/productlist'>
+                                        <ListItemText primary="Products" />
+                                    </LinkContainer>
+                                </ListItem>
+                                <ListItem button>
+                                    <LinkContainer to='/admin/orderlist'>
+                                        <ListItemText primary="Orders" />
+                                    </LinkContainer>
+                                </ListItem>
+                                <Divider />
+                                <ListItem />
+                            </>
+                        )
+                    }
+                    <ListItem>
                         <text style={{ fontWeight: 'bold', fontSize: 20 }}>All Categories</text>
                     </ListItem>
                     <ListItem button>
@@ -84,19 +126,3 @@ const Header = () =>
 }
 
 export default Header;
-
-
-/*
-export default function TemporaryDrawer()
-{
-    const [open, setOpen] = useState(false);
-    return (
-        <div>
-            <Button onClick={() => { setOpen(true) }}>left</Button>
-            <Drawer anchor='left' open={open} onClose={() => { setOpen(false) }}>
-                samaan
-            </Drawer>
-        </div>
-    );
-}
-*/
