@@ -1,21 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Carousel, Image, Container } from 'react-bootstrap'
+import { CircularProgress } from '@material-ui/core'
 import Product from '../components/Product'
-import axios from 'axios'
+import Message from '../components/Message'
+import { listProducts } from '../actions/productActions'
 
 const HomeScreen = () =>
 {
-    const [products, setProducts] = useState([])
+    const dispatch = useDispatch()
+
+    const productList = useSelector(state => state.productList)
+    const { loading, error, products } = productList
 
     useEffect(() =>
     {
-        const fetchProducts = async () =>
-        {
-            const { data } = await axios.get('/api/products')
-            setProducts(data)
-        }
-        fetchProducts()
-    }, [])
+        dispatch(listProducts())
+    }, [dispatch])
 
     return (
         <>
@@ -35,13 +36,21 @@ const HomeScreen = () =>
             </Carousel>
             <Container>
                 <h3 className='my-2'>Featured Products</h3>
-                <Row>
-                    {products.map(product => (
-                        <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                            <Product product={product} />
-                        </Col>
-                    ))}
-                </Row>
+                {loading ?
+                    <CircularProgress />
+                    : error ?
+                        <Message variant='danger'>{error}</Message>
+                        : (
+                            <Row>
+                                {products.map(product => (
+                                    <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                                        <Product product={product} />
+                                    </Col>
+                                ))}
+                            </Row>
+                        )
+                }
+
                 <Row>
                     <Col sm={12} md={4} className='p-2'>
                         <Image src={'/images/banners/ba.jpg'} fluid />
@@ -54,13 +63,20 @@ const HomeScreen = () =>
                     </Col>
                 </Row>
                 <h3 className='my-2'>New Products</h3>
-                <Row>
-                    {products.map(product => (
-                        <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                            <Product product={product} />
-                        </Col>
-                    ))}
-                </Row>
+                {loading ?
+                    <CircularProgress />
+                    : error ?
+                        <Message variant='danger'>{error}</Message>
+                        : (
+                            <Row>
+                                {products.map(product => (
+                                    <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+                                        <Product product={product} />
+                                    </Col>
+                                ))}
+                            </Row>
+                        )
+                }
             </Container>
             <Image src={'/images/banners/cc.jpg'} fluid />
         </>
