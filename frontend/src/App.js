@@ -4,11 +4,13 @@ import { Container } from 'react-bootstrap'
 import Header from './components/Header'
 import Footer from './components/Footer'
 import HomeScreen from './screens/HomeScreen'
-import ProductScreen from './screens/ProductScreen'
 import LoginScreen from './screens/LoginScreen'
 import RegisterScreen from './screens/RegisterScreen'
 import ProfileScreen from './screens/ProfileScreen'
 import UserListScreen from './screens/UserListScreen'
+import CategoryListScreen from './screens/CategoryListScreen'
+import ShopListScreen from './screens/ShopListScreen'
+import ProductScreen from './screens/ProductScreen'
 
 // import Cate from './screens/Categ'
 // import ShopListScreen from './screens/ShopList'
@@ -30,7 +32,10 @@ const App = () =>
         <Route path='/login' component={LoginScreen} />
         <Route path='/register' component={RegisterScreen} />
         <Route path='/profile' component={ProfileScreen} />
+
         <Route path='/admin/userlist' component={UserListScreen} />
+        <Route path='/admin/categorylist' component={CategoryListScreen} />
+        <Route path='/admin/shoplist' component={ShopListScreen} />
         <Route path='/admin/productlist' component={ProductListScreen} />
         <Route path='/admin/orderlist' component={OrderListScreen} />
       </main>

@@ -2,37 +2,71 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import
-    {
-        productListReducer,
-        productDetailsReducer,
-        productDeleteReducer,
-        productCreateReducer,
-        productUpdateReducer,
-        productReviewCreateReducer,
-        productTopRatedReducer,
-    } from './reducers/productReducers'
+{
+    userLoginReducer,
+    userRegisterReducer,
+    userDetailsReducer,
+    userUpdateProfileReducer,
+    userListReducer,
+    userDeleteReducer,
+    userUpdateReducer,
+} from './reducers/userReducers'
+import
+{
+    categoryListReducer,
+    categoryDeleteReducer,
+    categoryCreateReducer,
+    categoryUpdateReducer
+} from './reducers/categoryReducers'
+import
+{
+    shopListReducer,
+    shopDetailsReducer,
+    shopDeleteReducer,
+    shopCreateReducer,
+    shopUpdateReducer,
+} from './reducers/shopReducers'
+import
+{
+    productListReducer,
+    productDetailsReducer,
+    productDeleteReducer,
+    productCreateReducer,
+    productUpdateReducer,
+    productReviewCreateReducer,
+    productTopRatedReducer,
+} from './reducers/productReducers'
 import { cartReducer } from './reducers/cartReducers'
 import
-    {
-        userLoginReducer,
-        userRegisterReducer,
-        userDetailsReducer,
-        userUpdateProfileReducer,
-        userListReducer,
-        userDeleteReducer,
-        userUpdateReducer,
-    } from './reducers/userReducers'
-import
-    {
-        orderCreateReducer,
-        orderDetailsReducer,
-        orderPayReducer,
-        orderDeliverReducer,
-        orderListMyReducer,
-        orderListReducer,
-    } from './reducers/orderReducers'
+{
+    orderCreateReducer,
+    orderDetailsReducer,
+    orderPayReducer,
+    orderDeliverReducer,
+    orderListMyReducer,
+    orderListReducer,
+} from './reducers/orderReducers'
 
 const reducer = combineReducers({
+    userLogin: userLoginReducer,
+    userRegister: userRegisterReducer,
+    userDetails: userDetailsReducer,
+    userUpdateProfile: userUpdateProfileReducer,
+    userList: userListReducer,
+    userDelete: userDeleteReducer,
+    userUpdate: userUpdateReducer,
+
+    categoryList: categoryListReducer,
+    categoryDelete: categoryDeleteReducer,
+    categoryCreate: categoryCreateReducer,
+    categoryUpdate: categoryUpdateReducer,
+
+    shopList: shopListReducer,
+    shopDetails: shopDetailsReducer,
+    shopDelete: shopDeleteReducer,
+    shopCreate: shopCreateReducer,
+    shopUpdate: shopUpdateReducer,
+
     productList: productListReducer,
     productDetails: productDetailsReducer,
     productDelete: productDeleteReducer,
@@ -41,13 +75,7 @@ const reducer = combineReducers({
     productReviewCreate: productReviewCreateReducer,
     productTopRated: productTopRatedReducer,
     cart: cartReducer,
-    userLogin: userLoginReducer,
-    userRegister: userRegisterReducer,
-    userDetails: userDetailsReducer,
-    userUpdateProfile: userUpdateProfileReducer,
-    userList: userListReducer,
-    userDelete: userDeleteReducer,
-    userUpdate: userUpdateReducer,
+
     orderCreate: orderCreateReducer,
     orderDetails: orderDetailsReducer,
     orderPay: orderPayReducer,
