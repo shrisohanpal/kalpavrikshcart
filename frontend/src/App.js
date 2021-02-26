@@ -11,6 +11,7 @@ import UserListScreen from './screens/UserListScreen'
 import CategoryListScreen from './screens/CategoryListScreen'
 import ShopListScreen from './screens/ShopListScreen'
 import ProductScreen from './screens/ProductScreen'
+import CartScreen from './screens/CartScreen'
 
 // import Cate from './screens/Categ'
 // import ShopListScreen from './screens/ShopList'
@@ -27,11 +28,14 @@ const App = () =>
       <main className='py-3'>
 
         <Route path='/' component={HomeScreen} exact />
-        <Route path='/product/:id' component={ProductScreen} />
 
         <Route path='/login' component={LoginScreen} />
         <Route path='/register' component={RegisterScreen} />
         <Route path='/profile' component={ProfileScreen} />
+
+        <Route path='/product/:id' component={ProductScreen} />
+        <Route path='/cart/:id?' component={CartScreen} />
+
 
         <Route path='/admin/userlist' component={UserListScreen} />
         <Route path='/admin/categorylist' component={CategoryListScreen} />
