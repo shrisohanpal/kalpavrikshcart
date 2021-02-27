@@ -2,18 +2,20 @@ import mongoose from 'mongoose'
 
 const shopSchema = mongoose.Schema(
     {
-        /*  user: {
-              type: mongoose.Schema.Types.ObjectId,
-              required: true,
-              ref: 'User',
-          },*/
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'User',
+        },
+        category: {
+            type: mongoose.Schema.Types.ObjectId,
+            required: true,
+            ref: 'Category'
+        },
         name: {
             type: String,
         },
         image: {
-            type: String,
-        },
-        category: {
             type: String,
         },
         address: {

@@ -1,15 +1,26 @@
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux'
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux'
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, Container, Form, Button, FormControl, Row, Col } from 'react-bootstrap'
 import { Divider, Drawer, List, ListItem, ListItemText } from '@material-ui/core';
 
+import { listCategorys } from '../actions/categoryActions'
+
 const Header = () =>
 {
+    const dispatch = useDispatch()
+    const categoryList = useSelector((state) => state.categoryList)
+    const { loading, error, categorys } = categoryList
     const userLogin = useSelector((state) => state.userLogin)
     const { userInfo } = userLogin
 
     const [drawerOpen, setDrawerOpen] = useState(false);
+
+    useEffect(() =>
+    {
+        dispatch(listCategorys())
+    }, [dispatch])
+
     return (
         <header>
             <Container>
@@ -57,7 +68,7 @@ const Header = () =>
             <Drawer anchor='left' open={drawerOpen} onClose={() => { setDrawerOpen(false) }}>
                 <List style={{ width: 250 }}>
                     <ListItem>
-                        <text style={{ fontWeight: 'bold', fontSize: 20 }}>Kalpavrikshcart</text>
+                        <ListItemText primary={<div style={{ fontWeight: 'bold', fontSize: 20 }}>Kalpavrikshcart</div>} />
                         <Button className='ml-auto' onClick={() => setDrawerOpen(false)}><i className='fas fa-times' /></Button>
                     </ListItem>
                     <Divider />
@@ -66,7 +77,7 @@ const Header = () =>
                         userInfo && userInfo.isAdmin && (
                             <>
                                 <ListItem>
-                                    <text style={{ fontWeight: 'bold', fontSize: 20 }}>Admin Options</text>
+                                    <ListItemText primary={<div style={{ fontWeight: 'bold', fontSize: 20 }}>Admin Options</div>} />
                                 </ListItem>
                                 <ListItem button>
                                     <LinkContainer to='/admin/userlist'>
@@ -98,30 +109,21 @@ const Header = () =>
                             </>
                         )
                     }
-                    <ListItem>
-                        <text style={{ fontWeight: 'bold', fontSize: 20 }}>All Categories</text>
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemText primary="Electronics" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemText primary="Grocery" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemText primary="Furnitures" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemText primary="E-Service" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemText primary="Electronics" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemText primary="Building Material" />
-                    </ListItem>
+                    {!loading && !error && (
+                        <>
+                            <ListItem>
+                                <ListItemText primary={<div style={{ fontWeight: 'bold', fontSize: 20 }}>All Categories</div>} />
+                            </ListItem>
+                            {categorys.map((category) => (
+                                <ListItem button key={category._id}>
+                                    <ListItemText primary={category.name} />
+                                </ListItem>
+                            ))}
+                        </>
+                    )}
                 </List>
             </Drawer>
-        </header>
+        </header >
     )
 }
 

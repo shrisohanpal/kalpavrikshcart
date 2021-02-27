@@ -1,54 +1,82 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-//import { LinkContainer } from 'react-router-bootstrap'
-import { Container, Table, Button, Row, Col, Form } from 'react-bootstrap'
+import React, { useEffect } from 'react'
+import { LinkContainer } from 'react-router-bootstrap'
+import { Container, Table, Button, Row, Col } from 'react-bootstrap'
 import { CircularProgress } from '@material-ui/core'
+import { useDispatch, useSelector } from 'react-redux'
+import Message from '../components/Message'
+import Paginate from '../components/Paginate'
 import
 {
     listCategorys,
-    createCategory,
     deleteCategory,
-    updateCategory
+    createCategory,
 } from '../actions/categoryActions'
-import Message from '../components/Message'
+import { CATEGORY_CREATE_RESET } from '../constants/categoryConstants'
 
-const CategoryListScreen = () =>
+const CategoryListScreen = ({ history, match }) =>
 {
     const dispatch = useDispatch()
+
     const categoryList = useSelector((state) => state.categoryList)
     const { loading, error, categorys } = categoryList
 
-    const [updatedName, setUpdatedName] = useState('')
+    const categoryDelete = useSelector((state) => state.categoryDelete)
+    const {
+        loading: loadingDelete,
+        error: errorDelete,
+        success: successDelete,
+    } = categoryDelete
+
+    const categoryCreate = useSelector((state) => state.categoryCreate)
+    const {
+        loading: loadingCreate,
+        error: errorCreate,
+        success: successCreate,
+        category: createdCategory,
+    } = categoryCreate
+
+    const userLogin = useSelector((state) => state.userLogin)
+    const { userInfo } = userLogin
 
     useEffect(() =>
     {
-        dispatch(listCategorys())
-    }, [dispatch])
+        dispatch({ type: CATEGORY_CREATE_RESET })
+
+        if (!userInfo || !userInfo.isAdmin) {
+            history.push('/login')
+        }
+
+        if (successCreate) {
+            history.push(`/admin/category/${createdCategory._id}/edit`)
+        } else {
+            dispatch(listCategorys())
+        }
+    }, [
+        dispatch,
+        history,
+        userInfo,
+        successDelete,
+        successCreate,
+        createdCategory,
+    ])
+
+    const deleteHandler = (id) =>
+    {
+        if (window.confirm('Are you sure')) {
+            dispatch(deleteCategory(id))
+        }
+    }
 
     const createCategoryHandler = () =>
     {
         dispatch(createCategory())
-        dispatch(listCategorys())
-
-    }
-
-    const updateHandler = (id) =>
-    {
-        dispatch(updateCategory(id, updatedName))
-        dispatch(listCategorys())
-    }
-
-    const deleteHandler = (id) =>
-    {
-        dispatch(deleteCategory(id))
-        dispatch(listCategorys())
     }
 
     return (
         <Container>
             <Row className='align-items-center'>
                 <Col>
-                    <h1>Categorys</h1>
+                    <h1>Categories</h1>
                 </Col>
                 <Col className='text-right'>
                     <Button className='my-3' onClick={createCategoryHandler}>
@@ -56,6 +84,10 @@ const CategoryListScreen = () =>
           </Button>
                 </Col>
             </Row>
+            {loadingDelete && <CircularProgress />}
+            {errorDelete && <Message variant='danger'>{errorDelete}</Message>}
+            {loadingCreate && <CircularProgress />}
+            {errorCreate && <Message variant='danger'>{errorCreate}</Message>}
             {loading ? (
                 <CircularProgress />
             ) : error ? (
@@ -67,8 +99,6 @@ const CategoryListScreen = () =>
                                     <tr>
                                         <th>ID</th>
                                         <th>NAME</th>
-                                        <th>{<input onChange={(e) => setUpdatedName(e.target.value)} />}</th>
-                                        <th>DELETE</th>
                                         <th></th>
                                     </tr>
                                 </thead>
@@ -78,14 +108,11 @@ const CategoryListScreen = () =>
                                             <td>{category._id}</td>
                                             <td>{category.name}</td>
                                             <td>
-                                                <Button
-                                                    variant='danger'
-                                                    className='btn-sm'
-                                                    onClick={() => updateHandler(category._id)}>
-                                                    Update
-                                                </Button>
-                                            </td>
-                                            <td>
+                                                <LinkContainer to={`/admin/category/${category._id}/edit`}>
+                                                    <Button variant='light' className='btn-sm'>
+                                                        <i className='fas fa-edit'></i>
+                                                    </Button>
+                                                </LinkContainer>
                                                 <Button
                                                     variant='danger'
                                                     className='btn-sm'

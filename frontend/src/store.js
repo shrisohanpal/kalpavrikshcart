@@ -14,6 +14,7 @@ import
 import
 {
     categoryListReducer,
+    categoryDetailsReducer,
     categoryDeleteReducer,
     categoryCreateReducer,
     categoryUpdateReducer
@@ -57,6 +58,7 @@ const reducer = combineReducers({
     userUpdate: userUpdateReducer,
 
     categoryList: categoryListReducer,
+    categoryDetails: categoryDetailsReducer,
     categoryDelete: categoryDeleteReducer,
     categoryCreate: categoryCreateReducer,
     categoryUpdate: categoryUpdateReducer,

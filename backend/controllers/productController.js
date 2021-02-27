@@ -4,17 +4,18 @@ import Product from '../models/productModel.js'
 // @desc    Fetch all products
 // @route   GET /api/products
 // @access  Public
-const getProducts = asyncHandler(async (req, res) => {
+const getProducts = asyncHandler(async (req, res) =>
+{
   const pageSize = 10
   const page = Number(req.query.pageNumber) || 1
 
   const keyword = req.query.keyword
     ? {
-        name: {
-          $regex: req.query.keyword,
-          $options: 'i',
-        },
-      }
+      name: {
+        $regex: req.query.keyword,
+        $options: 'i',
+      },
+    }
     : {}
 
   const count = await Product.countDocuments({ ...keyword })
@@ -28,7 +29,8 @@ const getProducts = asyncHandler(async (req, res) => {
 // @desc    Fetch single product
 // @route   GET /api/products/:id
 // @access  Public
-const getProductById = asyncHandler(async (req, res) => {
+const getProductById = asyncHandler(async (req, res) =>
+{
   const product = await Product.findById(req.params.id)
 
   if (product) {
@@ -42,7 +44,8 @@ const getProductById = asyncHandler(async (req, res) => {
 // @desc    Delete a product
 // @route   DELETE /api/products/:id
 // @access  Private/Admin
-const deleteProduct = asyncHandler(async (req, res) => {
+const deleteProduct = asyncHandler(async (req, res) =>
+{
   const product = await Product.findById(req.params.id)
 
   if (product) {
@@ -57,17 +60,11 @@ const deleteProduct = asyncHandler(async (req, res) => {
 // @desc    Create a product
 // @route   POST /api/products
 // @access  Private/Admin
-const createProduct = asyncHandler(async (req, res) => {
+const createProduct = asyncHandler(async (req, res) =>
+{
   const product = new Product({
-    name: 'Sample name',
-    price: 0,
     user: req.user._id,
     image: '/images/sample.jpg',
-    brand: 'Sample brand',
-    category: 'Sample category',
-    countInStock: 0,
-    numReviews: 0,
-    description: 'Sample description',
   })
 
   const createdProduct = await product.save()
@@ -77,7 +74,8 @@ const createProduct = asyncHandler(async (req, res) => {
 // @desc    Update a product
 // @route   PUT /api/products/:id
 // @access  Private/Admin
-const updateProduct = asyncHandler(async (req, res) => {
+const updateProduct = asyncHandler(async (req, res) =>
+{
   const {
     name,
     price,
@@ -110,7 +108,8 @@ const updateProduct = asyncHandler(async (req, res) => {
 // @desc    Create new review
 // @route   POST /api/products/:id/reviews
 // @access  Private
-const createProductReview = asyncHandler(async (req, res) => {
+const createProductReview = asyncHandler(async (req, res) =>
+{
   const { rating, comment } = req.body
 
   const product = await Product.findById(req.params.id)
@@ -151,13 +150,15 @@ const createProductReview = asyncHandler(async (req, res) => {
 // @desc    Get top rated products
 // @route   GET /api/products/top
 // @access  Public
-const getTopProducts = asyncHandler(async (req, res) => {
+const getTopProducts = asyncHandler(async (req, res) =>
+{
   const products = await Product.find({}).sort({ rating: -1 }).limit(3)
 
   res.json(products)
 })
 
-export {
+export
+{
   getProducts,
   getProductById,
   deleteProduct,

@@ -4,17 +4,23 @@ import
     CATEGORY_CREATE_FAIL,
     CATEGORY_CREATE_REQUEST,
     CATEGORY_CREATE_SUCCESS,
+    CATEGORY_DETAILS_REQUEST,
+    CATEGORY_DETAILS_SUCCESS,
+    CATEGORY_DETAILS_FAIL,
     CATEGORY_DELETE_FAIL,
     CATEGORY_DELETE_REQUEST,
     CATEGORY_DELETE_SUCCESS,
     CATEGORY_LIST_FAIL,
-    CATEGORY_LIST_REQUEST, CATEGORY_LIST_SUCCESS, CATEGORY_UPDATE_FAIL, CATEGORY_UPDATE_REQUEST, CATEGORY_UPDATE_SUCCESS
+    CATEGORY_LIST_REQUEST,
+    CATEGORY_LIST_SUCCESS,
+    CATEGORY_UPDATE_FAIL,
+    CATEGORY_UPDATE_REQUEST,
+    CATEGORY_UPDATE_SUCCESS
 } from '../constants/categoryConstants'
 import { logout } from './userActions'
 
 export const listCategorys = () => async (dispatch) =>
 {
-
     try {
         dispatch({ type: CATEGORY_LIST_REQUEST })
 
@@ -29,6 +35,28 @@ export const listCategorys = () => async (dispatch) =>
     } catch (error) {
         dispatch({
             type: CATEGORY_LIST_FAIL,
+            payload:
+                error.response && error.response.data.message
+                    ? error.response.data.message
+                    : error.message,
+        })
+    }
+}
+
+export const listCategoryDetails = (id) => async (dispatch) =>
+{
+    try {
+        dispatch({ type: CATEGORY_DETAILS_REQUEST })
+
+        const { data } = await axios.get(`/api/categorys/${id}`)
+
+        dispatch({
+            type: CATEGORY_DETAILS_SUCCESS,
+            payload: data,
+        })
+    } catch (error) {
+        dispatch({
+            type: CATEGORY_DETAILS_FAIL,
             payload:
                 error.response && error.response.data.message
                     ? error.response.data.message
@@ -97,6 +125,7 @@ export const createCategory = () => async (dispatch, getState) =>
             type: CATEGORY_CREATE_SUCCESS,
             payload: data,
         })
+
     } catch (error) {
         const message =
             error.response && error.response.data.message
@@ -113,7 +142,7 @@ export const createCategory = () => async (dispatch, getState) =>
 }
 
 
-export const updateCategory = (id, updatedName) => async (dispatch, getState) =>
+export const updateCategory = (category) => async (dispatch, getState) =>
 {
     try {
         dispatch({
@@ -132,8 +161,8 @@ export const updateCategory = (id, updatedName) => async (dispatch, getState) =>
         }
 
         const { data } = await axios.put(
-            `/api/categorys/${id}`,
-            { name: updatedName },
+            `/api/categorys/${category._id}`,
+            category,
             config
         )
 
@@ -142,7 +171,7 @@ export const updateCategory = (id, updatedName) => async (dispatch, getState) =>
             payload: data,
         })
 
-        //  dispatch({ type: CATEGORY_LIST_SUCCESS, payload: data })
+        dispatch({ type: CATEGORY_DETAILS_SUCCESS, payload: data })
     } catch (error) {
         const message =
             error.response && error.response.data.message
