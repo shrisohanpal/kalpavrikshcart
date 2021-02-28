@@ -16,6 +16,9 @@ import ShopEditScreen from './screens/ShopEditScreen'
 import ProductScreen from './screens/ProductScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import CartScreen from './screens/CartScreen'
+import ShippingScreen from './screens/ShippingScreen'
+import PaymentScreen from './screens/PaymentScreen'
+import PlaceOrderScreen from './screens/PlaceOrderScreen'
 
 // import Cate from './screens/Categ'
 // import ShopListScreen from './screens/ShopList'
@@ -39,7 +42,9 @@ const App = () =>
 
         <Route path='/product/:id' component={ProductScreen} />
         <Route path='/cart/:id?' component={CartScreen} />
-
+        <Route path='/shipping' component={ShippingScreen} />
+        <Route path='/payment' component={PaymentScreen} />
+        <Route path='/placeorder' component={PlaceOrderScreen} />
 
         <Route path='/admin/userlist' component={UserListScreen} />
         <Route path='/admin/user/:id/edit' component={UserEditScreen} />
