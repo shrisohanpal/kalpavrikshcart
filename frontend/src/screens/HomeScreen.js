@@ -3,19 +3,25 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, Carousel, Image, Container } from 'react-bootstrap'
 import { CircularProgress } from '@material-ui/core'
 import Product from '../components/Product'
+import Shop from '../components/Shop'
 import Message from '../components/Message'
 import { listProducts } from '../actions/productActions'
+import { listShops } from '../actions/shopActions'
 
 const HomeScreen = () =>
 {
     const dispatch = useDispatch()
 
     const productList = useSelector(state => state.productList)
-    const { loading, error, products } = productList
+    const { loading: loadingProducts, error: errorProducts, products } = productList
+
+    const shopList = useSelector(state => state.shopList)
+    const { loading: loadingShops, error: errorShops, shops } = shopList
 
     useEffect(() =>
     {
         dispatch(listProducts())
+        dispatch(listShops)
     }, [dispatch])
 
     return (
@@ -36,10 +42,10 @@ const HomeScreen = () =>
             </Carousel>
             <Container>
                 <h3 className='my-2'>Featured Products</h3>
-                {loading ?
+                {loadingProducts ?
                     <CircularProgress />
-                    : error ?
-                        <Message variant='danger'>{error}</Message>
+                    : errorProducts ?
+                        <Message variant='danger'>{errorProducts}</Message>
                         : (
                             <Row>
                                 {products.map(product => (
@@ -62,16 +68,16 @@ const HomeScreen = () =>
                         <Image src={'/images/banners/bc.jpg'} fluid />
                     </Col>
                 </Row>
-                <h3 className='my-2'>New Products</h3>
-                {loading ?
+                <h3 className='my-2'>Featured Shops</h3>
+                {loadingShops ?
                     <CircularProgress />
-                    : error ?
-                        <Message variant='danger'>{error}</Message>
+                    : errorShops ?
+                        <Message variant='danger'>{errorShops}</Message>
                         : (
                             <Row>
-                                {products.map(product => (
-                                    <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-                                        <Product product={product} />
+                                {shops.map(shop => (
+                                    <Col key={shop._id} sm={12} md={6} lg={4} xl={3}>
+                                        <Shop shop={shop} />
                                     </Col>
                                 ))}
                             </Row>

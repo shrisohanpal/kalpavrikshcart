@@ -12,6 +12,7 @@ import UserEditScreen from './screens/UserEditScreen'
 import CategoryListScreen from './screens/CategoryListScreen'
 import CategoryEditScreen from './screens/CategoryEditScreen'
 import ShopListScreen from './screens/ShopListScreen'
+import ShopEditScreen from './screens/ShopEditScreen'
 import ProductScreen from './screens/ProductScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
 import CartScreen from './screens/CartScreen'
@@ -45,6 +46,7 @@ const App = () =>
         <Route path='/admin/categorylist' component={CategoryListScreen} />
         <Route path='/admin/category/:id/edit' component={CategoryEditScreen} />
         <Route path='/admin/shoplist' component={ShopListScreen} />
+        <Route path='/admin/shop/:id/edit' component={ShopEditScreen} />
         <Route path='/admin/productlist' component={ProductListScreen} />
         <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
         <Route path='/admin/orderlist' component={OrderListScreen} />

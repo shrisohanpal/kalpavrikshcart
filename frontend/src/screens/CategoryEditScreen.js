@@ -57,7 +57,7 @@ const CategoryEditScreen = ({ match, history }) =>
         Go Back
       </Link>
       <FormContainer>
-        <h1>{category.name ? 'Edit' : 'Create'} Category</h1>
+        <h1>{category && category.name ? 'Edit' : 'Create'} Category</h1>
         {loadingUpdate && <CircularProgress />}
         {errorUpdate && <Message variant='danger'>{errorUpdate}</Message>}
         {loading ? (
@@ -76,7 +76,7 @@ const CategoryEditScreen = ({ match, history }) =>
                   ></Form.Control>
                 </Form.Group>
                 <Button type='submit' variant='primary'>
-                  {category.name ? 'Update' : 'Create'}
+                  {category && category.name ? 'Update' : 'Create'}
                 </Button>
               </Form>
             )}

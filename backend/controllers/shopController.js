@@ -47,11 +47,8 @@ const deleteShop = asyncHandler(async (req, res) =>
 const createShop = asyncHandler(async (req, res) =>
 {
     const shop = new Shop({
-        name: '',
-        image: '/uploads/default.png',
-        category: '',
-        address: '',
-        description: '',
+        user: req.user._id,
+        image: '/uploads/default.png'
     })
 
     const createdShop = await shop.save()

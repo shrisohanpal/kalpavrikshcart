@@ -38,7 +38,7 @@ export const shopListReducer = (state = { shops: [] }, action) =>
 }
 
 
-export const shopDetailsReducer = (state = {}, action) =>
+export const shopDetailsReducer = (state = { shop: {} }, action) =>
 {
     switch (action.type) {
         case SHOP_DETAILS_REQUEST:
