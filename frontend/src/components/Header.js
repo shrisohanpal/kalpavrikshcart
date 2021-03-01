@@ -27,7 +27,9 @@ const Header = () =>
                 <Navbar expand="lg">
                     <Nav className="m-auto">
                         <LinkContainer to='/'>
-                            <Navbar.Brand>Kalpavarikshcart</Navbar.Brand>
+                            <Navbar.Brand>
+                                <img alt="Kalpavarikshcart" style={{ width: 180, height: 60 }} src={window.location.origin + "/logo.jpg"} />
+                            </Navbar.Brand>
                         </LinkContainer>
                     </Nav>
                 </Navbar>
