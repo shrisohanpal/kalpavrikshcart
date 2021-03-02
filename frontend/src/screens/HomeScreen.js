@@ -8,8 +8,6 @@ import Message from '../components/Message'
 import { listProducts } from '../actions/productActions'
 import { listShops } from '../actions/shopActions'
 import OwlCarousel from 'react-owl-carousel';
-import 'owl.carousel/dist/assets/owl.carousel.css';
-import 'owl.carousel/dist/assets/owl.theme.default.css';
 
 const HomeScreen = () =>
 {
@@ -29,7 +27,7 @@ const HomeScreen = () =>
 
     return (
         <>
-            <Carousel pause='hover' style={{ margin: 0, display: 'flex', justifyContent: 'center', width: '100%', alignItems: 'center', marginBottom: '10px', marginBottom: 0 }}>
+            <Carousel pause='hover' style={{ margin: 0, display: 'flex', justifyContent: 'center', width: '100%', alignItems: 'center', paddingTop: 0 }}>
                 <Carousel.Item>
                     <div style={{ display: 'flex', justifyContent: 'center', width: '100%', height: window.innerWidth < 780 ? 150 : 300 }} >
                         <img
@@ -106,7 +104,7 @@ const HomeScreen = () =>
                         )
                 }
             </Container>
-            <Image src={'/images/banners/cc.jpg'} fluid />
+            <Image style={{ minHeight: 100 }} src={'/images/banners/cc.jpg'} fluid />
         </>
     )
 }

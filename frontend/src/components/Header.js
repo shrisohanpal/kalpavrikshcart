@@ -24,9 +24,9 @@ const Header = () =>
     return (
         <header>
             <Container>
-                <Navbar expand="lg">
+                <Navbar expand="lg" className='py-0'>
                     <Nav className="m-auto">
-                        <LinkContainer to='/'>
+                        <LinkContainer to='/' className='py-0 my-0'>
                             <Navbar.Brand>
                                 <img alt="Kalpavarikshcart" style={{ width: 180, height: 60 }} src={window.location.origin + "/logo.jpg"} />
                             </Navbar.Brand>

@@ -1,31 +1,31 @@
 const shops = [
     {
         name: 'Shop1',
-        image: '/images/airpods.jpg',
+        image: '/images/shop.png',
         address: 'Delhi',
         description:
-            'description',
+            'this is description and here will be the shop details and all about the products of this shop. And in the down Here will be the products of the shop',
     },
     {
         name: 'Shop2',
-        image: '/images/airpods.jpg',
+        image: '/images/shop.png',
         address: 'Ghaziabad',
         description:
-            'description',
+            'this is description and here will be the shop details and all about the products of this shop. And in the down Here will be the products of the shop',
     },
     {
         name: 'Shop3',
-        image: '/images/airpods.jpg',
+        image: '/images/shop.png',
         address: 'UP',
         description:
-            'description',
+            'this is description and here will be the shop details and all about the products of this shop. And in the down Here will be the products of the shop',
     },
     {
         name: 'Shop4',
-        image: '/images/airpods.jpg',
+        image: '/images/shop.png',
         address: 'Delhi',
         description:
-            'description',
+            'this is description and here will be the shop details and all about the products of this shop. And in the down Here will be the products of the shop',
     },
 
 ]

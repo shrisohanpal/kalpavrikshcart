@@ -12,6 +12,7 @@ import UserEditScreen from './screens/UserEditScreen'
 import CategoryListScreen from './screens/CategoryListScreen'
 import CategoryEditScreen from './screens/CategoryEditScreen'
 import ShopListScreen from './screens/ShopListScreen'
+import ShopScreen from './screens/ShopScreen'
 import ShopEditScreen from './screens/ShopEditScreen'
 import ProductScreen from './screens/ProductScreen'
 import ProductEditScreen from './screens/ProductEditScreen'
@@ -19,6 +20,7 @@ import CartScreen from './screens/CartScreen'
 import ShippingScreen from './screens/ShippingScreen'
 import PaymentScreen from './screens/PaymentScreen'
 import PlaceOrderScreen from './screens/PlaceOrderScreen'
+import OrderScreen from './screens/OrderScreen'
 
 // import Cate from './screens/Categ'
 // import ShopListScreen from './screens/ShopList'
@@ -32,7 +34,7 @@ const App = () =>
   return (
     <Router>
       <Header />
-      <main className='py-3'>
+      <main className='py-0'>
 
         <Route path='/' component={HomeScreen} exact />
 
@@ -40,11 +42,13 @@ const App = () =>
         <Route path='/register' component={RegisterScreen} />
         <Route path='/profile' component={ProfileScreen} />
 
+        <Route path='/shop/:id' component={ShopScreen} />
         <Route path='/product/:id' component={ProductScreen} />
         <Route path='/cart/:id?' component={CartScreen} />
         <Route path='/shipping' component={ShippingScreen} />
         <Route path='/payment' component={PaymentScreen} />
         <Route path='/placeorder' component={PlaceOrderScreen} />
+        <Route path='/order/:id' component={OrderScreen} />
 
         <Route path='/admin/userlist' component={UserListScreen} />
         <Route path='/admin/user/:id/edit' component={UserEditScreen} />
