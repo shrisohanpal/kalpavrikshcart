@@ -52,6 +52,7 @@ const createShop = asyncHandler(async (req, res) =>
     })
 
     const createdShop = await shop.save()
+
     res.status(201).json(createdShop)
 })
 

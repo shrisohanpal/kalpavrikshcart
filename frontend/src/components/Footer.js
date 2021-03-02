@@ -4,24 +4,21 @@ import { Navbar, Nav, Form, Button, FormControl, Container, Row, Col } from 'rea
 const Footer = () =>
 {
     return (
-        <footer>
+        <footer className='py-3'>
             <Navbar bg="primary" variant="dark">
                 <Container>
                     <Row className='py-3 w-100'>
-                        <Col md={4} className='text-center py-3'>
-                            <Navbar.Brand href="#">Contact Details</Navbar.Brand><br />
+                        <Col md={4} className='text-center'>
                             <Navbar.Brand href="#">Contact Details</Navbar.Brand><br />
                             <Navbar.Brand href="#">Contact Details</Navbar.Brand><br />
                             <Navbar.Brand href="#">Contact Details</Navbar.Brand><br />
                         </Col>
-                        <Col md={4} className='text-center py-3'>
-                            <Navbar.Brand href="#">Privacy Policy</Navbar.Brand><br />
+                        <Col md={4} className='text-center'>
                             <Navbar.Brand href="#">Privacy Policy</Navbar.Brand><br />
                             <Navbar.Brand href="#">Privacy Policy</Navbar.Brand><br />
                             <Navbar.Brand href="#">Privacy Policy</Navbar.Brand><br />
                         </Col>
-                        <Col md={4} className='text-center py-3'>
-                            <Navbar.Brand href="#">Social Media Links</Navbar.Brand><br />
+                        <Col md={4} className='text-center'>
                             <Navbar.Brand href="#">Social Media Links</Navbar.Brand><br />
                             <Navbar.Brand href="#">Social Media Links</Navbar.Brand><br />
                             <Navbar.Brand href="#">Social Media Links</Navbar.Brand><br />

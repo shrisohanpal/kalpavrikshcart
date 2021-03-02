@@ -11,6 +11,7 @@ import UserListScreen from './screens/UserListScreen'
 import UserEditScreen from './screens/UserEditScreen'
 import CategoryListScreen from './screens/CategoryListScreen'
 import CategoryEditScreen from './screens/CategoryEditScreen'
+import StoreScreen from './screens/StoreScreen'
 import ShopListScreen from './screens/ShopListScreen'
 import ShopScreen from './screens/ShopScreen'
 import ShopEditScreen from './screens/ShopEditScreen'
@@ -42,6 +43,7 @@ const App = () =>
         <Route path='/register' component={RegisterScreen} />
         <Route path='/profile' component={ProfileScreen} />
 
+        <Route path='/store' component={StoreScreen} />
         <Route path='/shop/:id' component={ShopScreen} />
         <Route path='/product/:id' component={ProductScreen} />
         <Route path='/cart/:id?' component={CartScreen} />

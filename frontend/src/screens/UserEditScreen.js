@@ -14,6 +14,7 @@ const UserEditScreen = ({ match, history }) =>
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const [shop, setShop] = useState(false)
   const [isAdmin, setIsAdmin] = useState(false)
 
   const dispatch = useDispatch()
@@ -39,6 +40,7 @@ const UserEditScreen = ({ match, history }) =>
       } else {
         setName(user.name)
         setEmail(user.email)
+        setShop(user.shop)
         setIsAdmin(user.isAdmin)
       }
     }
@@ -47,7 +49,7 @@ const UserEditScreen = ({ match, history }) =>
   const submitHandler = (e) =>
   {
     e.preventDefault()
-    dispatch(updateUser({ _id: userId, name, email, isAdmin }))
+    dispatch(updateUser({ _id: userId, name, email, shop, isAdmin }))
   }
 
   return (
@@ -85,6 +87,15 @@ const UserEditScreen = ({ match, history }) =>
                   ></Form.Control>
                 </Form.Group>
 
+                <Form.Group controlId='shop'>
+                  <Form.Check
+                    type='checkbox'
+                    label='Can Sell Products'
+                    checked={shop}
+                    onChange={(e) => setShop(e.target.checked)}
+                  ></Form.Check>
+                </Form.Group>
+
                 <Form.Group controlId='isadmin'>
                   <Form.Check
                     type='checkbox'
@@ -104,4 +115,4 @@ const UserEditScreen = ({ match, history }) =>
   )
 }
 
-export default UserEditScreen
+export default UserEditScreen 
