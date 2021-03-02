@@ -8,6 +8,7 @@ import { listShopDetails } from '../actions/shopActions'
 import Message from '../components/Message'
 import { listProducts } from '../actions/productActions'
 import OwlCarousel from 'react-owl-carousel';
+import GoogleMapReact from 'google-map-react';
 
 const ShopScreen = ({ history, match }) =>
 {
@@ -56,7 +57,10 @@ const ShopScreen = ({ history, match }) =>
                                 </ListGroup>
                             </Col>
                             <Col md={3}>
-                                <h1>Map</h1>
+                                <GoogleMapReact
+                                    defaultCenter={{ lat: 59.95, lng: 30.33 }}
+                                    defaultZoom={11}
+                                />
                             </Col>
                         </Row>
                     )

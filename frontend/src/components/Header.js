@@ -28,7 +28,7 @@ const Header = () =>
                     <Nav className="m-auto">
                         <LinkContainer to='/' className='py-0 my-0'>
                             <Navbar.Brand>
-                                <img alt="Kalpavarikshcart" style={{ width: 180, height: 60 }} src={window.location.origin + "/logo.jpg"} />
+                                <img alt="Kalpavarikshcart" style={{ width: 180, height: 60 }} src={window.location.origin + "/logo.png"} />
                             </Navbar.Brand>
                         </LinkContainer>
                     </Nav>
