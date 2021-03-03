@@ -34,6 +34,9 @@ const ProductEditScreen = ({ match, history }) =>
     success: successUpdate,
   } = productUpdate
 
+  const categoryList = useSelector((state) => state.categoryList)
+  const { loading: categoryLoading, error: categoryError, categorys } = categoryList
+
   useEffect(() =>
   {
     if (successUpdate) {
@@ -170,11 +173,16 @@ const ProductEditScreen = ({ match, history }) =>
                 <Form.Group controlId='category'>
                   <Form.Label>Category</Form.Label>
                   <Form.Control
-                    type='text'
-                    placeholder='Enter category'
+                    as='select'
                     value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                  ></Form.Control>
+                    // onChange={(e) => console.log(e.target.value)}>
+                    onChange={(e) => setCategory(e.target.value)}>
+                    {!categoryLoading && !categoryError && (
+                      categorys.map((category) => (
+                        <option key={category._id}>{category.name}</option>
+                      ))
+                    )}
+                  </Form.Control>
                 </Form.Group>
 
                 <Form.Group controlId='description'>
