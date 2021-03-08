@@ -9,6 +9,7 @@ import
 {
     getOrderDetails,
     payOrder,
+    dispatchOrder,
     deliverOrder,
 } from '../actions/orderActions'
 import
@@ -64,6 +65,11 @@ const OrderScreen = ({ match, history }) =>
         dispatch(payOrder(orderId))
     }
 
+    const dispatchHandler = () =>
+    {
+        dispatch(dispatchOrder(order))
+    }
+
     const deliverHandler = () =>
     {
         dispatch(deliverOrder(order))
@@ -99,6 +105,13 @@ const OrderScreen = ({ match, history }) =>
                                         <strong>Phone :</strong>
                                         {' '}{order.shippingAddress.phone}
                                     </p>
+                                    {order.isDispatched ? (
+                                        <Message variant='success'>
+                                            Dispatched on {order.dispatchedAt}
+                                        </Message>
+                                    ) : (
+                                        <Message variant='danger'>Not Dispatched</Message>
+                                    )}
                                     {order.isDelivered ? (
                                         <Message variant='success'>
                                             Delivered on {order.deliveredAt}
@@ -187,10 +200,23 @@ const OrderScreen = ({ match, history }) =>
                                     <ListGroup.Item>
                                         <Message> Your Order is Placed Successfully! You will get your Product very soon. </Message>
                                     </ListGroup.Item>
-                                    {loadingDeliver && <CircularProgress />}
                                     {userInfo &&
                                         userInfo.isAdmin &&
                                         //order.isPaid &&
+                                        !order.isDispatched && (
+                                            <ListGroup.Item>
+                                                <Button
+                                                    type='button'
+                                                    className='btn btn-block'
+                                                    onClick={dispatchHandler}>
+                                                    Mark As Dispatched
+                                                        </Button>
+                                            </ListGroup.Item>
+                                        )}
+                                    {loadingDeliver && <CircularProgress />}
+                                    {userInfo &&
+                                        userInfo.isAdmin &&
+                                        order.isDispatched &&
                                         !order.isDelivered && (
                                             <ListGroup.Item>
                                                 <Button

@@ -1,4 +1,5 @@
-import {
+import
+{
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_SUCCESS,
   ORDER_CREATE_FAIL,
@@ -16,6 +17,10 @@ import {
   ORDER_LIST_FAIL,
   ORDER_LIST_SUCCESS,
   ORDER_LIST_REQUEST,
+  ORDER_DISPATCH_FAIL,
+  ORDER_DISPATCH_SUCCESS,
+  ORDER_DISPATCH_REQUEST,
+  ORDER_DISPATCH_RESET,
   ORDER_DELIVER_FAIL,
   ORDER_DELIVER_SUCCESS,
   ORDER_DELIVER_REQUEST,
@@ -23,7 +28,8 @@ import {
   ORDER_CREATE_RESET,
 } from '../constants/orderConstants'
 
-export const orderCreateReducer = (state = {}, action) => {
+export const orderCreateReducer = (state = {}, action) =>
+{
   switch (action.type) {
     case ORDER_CREATE_REQUEST:
       return {
@@ -50,7 +56,8 @@ export const orderCreateReducer = (state = {}, action) => {
 export const orderDetailsReducer = (
   state = { loading: true, orderItems: [], shippingAddress: {} },
   action
-) => {
+) =>
+{
   switch (action.type) {
     case ORDER_DETAILS_REQUEST:
       return {
@@ -72,7 +79,8 @@ export const orderDetailsReducer = (
   }
 }
 
-export const orderPayReducer = (state = {}, action) => {
+export const orderPayReducer = (state = {}, action) =>
+{
   switch (action.type) {
     case ORDER_PAY_REQUEST:
       return {
@@ -95,7 +103,33 @@ export const orderPayReducer = (state = {}, action) => {
   }
 }
 
-export const orderDeliverReducer = (state = {}, action) => {
+export const orderDispatchReducer = (state = {}, action) =>
+{
+  switch (action.type) {
+    case ORDER_DISPATCH_REQUEST:
+      return {
+        loading: true,
+      }
+    case ORDER_DISPATCH_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+      }
+    case ORDER_DISPATCH_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      }
+    case ORDER_DISPATCH_RESET:
+      return {}
+    default:
+      return state
+  }
+}
+
+
+export const orderDeliverReducer = (state = {}, action) =>
+{
   switch (action.type) {
     case ORDER_DELIVER_REQUEST:
       return {
@@ -118,7 +152,8 @@ export const orderDeliverReducer = (state = {}, action) => {
   }
 }
 
-export const orderListMyReducer = (state = { orders: [] }, action) => {
+export const orderListMyReducer = (state = { orders: [] }, action) =>
+{
   switch (action.type) {
     case ORDER_LIST_MY_REQUEST:
       return {
@@ -141,7 +176,8 @@ export const orderListMyReducer = (state = { orders: [] }, action) => {
   }
 }
 
-export const orderListReducer = (state = { orders: [] }, action) => {
+export const orderListReducer = (state = { orders: [] }, action) =>
+{
   switch (action.type) {
     case ORDER_LIST_REQUEST:
       return {
