@@ -66,7 +66,12 @@ const updateShop = asyncHandler(async (req, res) =>
         image,
         category,
         address,
-        description,
+        aadharNumber,
+        panNumber,
+        gstNumber,
+        phone,
+        email,
+        description
     } = req.body
 
     const shop = await Shop.findById(req.params.id)
@@ -76,6 +81,11 @@ const updateShop = asyncHandler(async (req, res) =>
         shop.image = image
         shop.category = category
         shop.address = address
+        shop.aadharNumber = aadharNumber
+        shop.panNumber = panNumber
+        shop.gstNumber = gstNumber
+        shop.phone = phone
+        shop.email = email
         shop.description = description
 
         const updatedShop = await shop.save()

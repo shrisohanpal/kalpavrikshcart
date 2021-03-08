@@ -16,6 +16,12 @@ const ShopEditScreen = ({ match, history }) =>
   const [name, setName] = useState('')
   const [image, setImage] = useState('')
   const [category, setCategory] = useState('')
+  const [address, setAddress] = useState('')
+  const [aadharNumber, setAadharNumber] = useState('')
+  const [panNumber, setPanNumber] = useState('')
+  const [gstNumber, setGstNumber] = useState('')
+  const [phone, setPhone] = useState('')
+  const [email, setEmail] = useState('')
   const [description, setDescription] = useState('')
   const [uploading, setUploading] = useState(false)
 
@@ -43,6 +49,12 @@ const ShopEditScreen = ({ match, history }) =>
         setName(shop.name)
         setImage(shop.image)
         setCategory(shop.category)
+        setAddress(shop.address)
+        setAadharNumber(shop.aadharNumber)
+        setPanNumber(shop.panNumber)
+        setGstNumber(shop.gstNumber)
+        setPhone(shop.phone)
+        setEmail(shop.email)
         setDescription(shop.description)
       }
     }
@@ -81,6 +93,12 @@ const ShopEditScreen = ({ match, history }) =>
         name,
         image,
         category,
+        address,
+        aadharNumber,
+        panNumber,
+        gstNumber,
+        phone,
+        email,
         description,
       })
     )
@@ -100,59 +118,119 @@ const ShopEditScreen = ({ match, history }) =>
         ) : error ? (
           <Message variant='danger'>{error}</Message>
         ) : (
-              <Form onSubmit={submitHandler}>
-                <Form.Group controlId='name'>
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control
-                    type='name'
-                    placeholder='Enter name'
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
+          <Form onSubmit={submitHandler}>
+            <Form.Group controlId='name'>
+              <Form.Label>Name</Form.Label>
+              <Form.Control
+                type='name'
+                placeholder='Enter name'
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
 
-                <Form.Group controlId='image'>
-                  <Form.Label>Image</Form.Label>
-                  <Form.Control
-                    type='text'
-                    placeholder='Enter image url'
-                    value={image}
-                    onChange={(e) => setImage(e.target.value)}
-                  ></Form.Control>
-                  <Form.File
-                    id='image-file'
-                    label='Choose File'
-                    custom
-                    onChange={uploadFileHandler}
-                  ></Form.File>
-                  {uploading && <CircularProgress />}
-                </Form.Group>
+            <Form.Group controlId='image'>
+              <Form.Label>Image</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter image url'
+                value={image}
+                onChange={(e) => setImage(e.target.value)}
+              ></Form.Control>
+              <Form.File
+                id='image-file'
+                label='Choose File'
+                custom
+                onChange={uploadFileHandler}
+              ></Form.File>
+              {uploading && <CircularProgress />}
+            </Form.Group>
 
-                <Form.Group controlId='category'>
-                  <Form.Label>Category</Form.Label>
-                  <Form.Control
-                    type='text'
-                    placeholder='Enter category'
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
+            <Form.Group controlId='category'>
+              <Form.Label>Category</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter category'
+                value={category}
+                onChange={(e) => setCategory(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
 
-                <Form.Group controlId='description'>
-                  <Form.Label>Description</Form.Label>
-                  <Form.Control
-                    type='text'
-                    placeholder='Enter description'
-                    value={description}
-                    onChange={(e) => setDescription(e.target.value)}
-                  ></Form.Control>
-                </Form.Group>
+            <Form.Group controlId='address'>
+              <Form.Label>Address</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter Address'
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
 
-                <Button type='submit' variant='primary'>
-                  {shop && shop.name ? 'Update' : 'Create'}
-                </Button>
-              </Form>
-            )}
+            <Form.Group controlId='aadhar'>
+              <Form.Label>Aadhar Number</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter Aadhar Number'
+                value={aadharNumber}
+                onChange={(e) => setAadharNumber(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='panNumber'>
+              <Form.Label>PAN Number</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter PAN Number'
+                value={panNumber}
+                onChange={(e) => setPanNumber(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='gstNumber'>
+              <Form.Label>GST Number</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter GST Number'
+                value={gstNumber}
+                onChange={(e) => setGstNumber(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='phone'>
+              <Form.Label>Phone</Form.Label>
+              <Form.Control
+                type='number'
+                placeholder='Enter Phone Number'
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='email'>
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter Email Address'
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='description'>
+              <Form.Label>Description</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter description'
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Button type='submit' variant='primary'>
+              {shop && shop.name ? 'Update' : 'Create'}
+            </Button>
+          </Form>
+        )}
       </FormContainer>
     </Container>
   )

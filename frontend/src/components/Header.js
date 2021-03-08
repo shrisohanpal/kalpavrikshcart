@@ -111,6 +111,34 @@ const Header = () =>
                             </>
                         )
                     }
+
+                    {
+                        userInfo && userInfo.shop && (
+                            <>
+                                <ListItem>
+                                    <ListItemText primary={<div style={{ fontWeight: 'bold', fontSize: 20 }}>Shop Options</div>} />
+                                </ListItem>
+                                <ListItem button>
+                                    <LinkContainer to='/shop/shoplist'>
+                                        <ListItemText primary="My Shop" />
+                                    </LinkContainer>
+                                </ListItem>
+                                <ListItem button>
+                                    <LinkContainer to='/shop/productlist'>
+                                        <ListItemText primary="Products" />
+                                    </LinkContainer>
+                                </ListItem>
+                                <ListItem button>
+                                    <LinkContainer to='/shop/orderlist'>
+                                        <ListItemText primary="Orders" />
+                                    </LinkContainer>
+                                </ListItem>
+                                <Divider />
+                                <ListItem />
+                            </>
+                        )
+                    }
+
                     {!loading && !error && (
                         <>
                             <ListItem>

@@ -57,20 +57,19 @@ const HomeScreen = () =>
                 </Carousel.Item>
             </Carousel>
             <Container>
-                <h3 className='my-2'>Featured Products</h3>
-                {loadingProducts ? (<CircularProgress />)
-                    : errorProducts
+                <h3 className='my-2'>Featured Shops</h3>
+                {loadingShops ? (<CircularProgress />)
+                    : errorShops
                         ? (<Message variant='danger'>{errorProducts}</Message>)
                         : (<OwlCarousel items={window.innerWidth > 780 ? 4 : 2}
                             className="owl-theme"
                             loop
                             nav
                             margin={8} autoplay={true} autoplayTimeout={2000}>
-                            {products.map((product) => (
-                                <div key={product._id}>
-                                    <Product product={product} />
+                            {shops.map((shop) => (
+                                <div key={shop._id}>
+                                    <Shop shop={shop} />
                                 </div>
-
                             ))}
                         </OwlCarousel>
                         )
@@ -86,19 +85,20 @@ const HomeScreen = () =>
                         <Image src={'/images/banners/bc.jpg'} fluid />
                     </Col>
                 </Row>
-                <h3 className='my-2'>Featured Shops</h3>
-                {loadingShops ? (<CircularProgress />)
-                    : errorShops
+                <h3 className='my-2'>Featured Products</h3>
+                {loadingProducts ? (<CircularProgress />)
+                    : errorProducts
                         ? (<Message variant='danger'>{errorProducts}</Message>)
                         : (<OwlCarousel items={window.innerWidth > 780 ? 4 : 2}
                             className="owl-theme"
                             loop
                             nav
                             margin={8} autoplay={true} autoplayTimeout={2000}>
-                            {shops.map((shop) => (
-                                <div key={shop._id}>
-                                    <Shop shop={shop} />
+                            {products.map((product) => (
+                                <div key={product._id}>
+                                    <Product product={product} />
                                 </div>
+
                             ))}
                         </OwlCarousel>
                         )

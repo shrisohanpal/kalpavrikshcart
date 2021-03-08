@@ -8,8 +8,7 @@ const shopSchema = mongoose.Schema(
             ref: 'User',
         },
         category: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Category'
+            type: String,
         },
         name: {
             type: String,
@@ -19,6 +18,21 @@ const shopSchema = mongoose.Schema(
         },
         address: {
             type: String,
+        },
+        aadharNumber: {
+            type: String
+        },
+        panNumber: {
+            type: String
+        },
+        gstNumber: {
+            type: String
+        },
+        phone: {
+            type: String
+        },
+        email: {
+            type: String
         },
         description: {
             type: String,
