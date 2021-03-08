@@ -78,25 +78,32 @@ const updateProduct = asyncHandler(async (req, res) =>
 {
   const {
     name,
-    price,
+    category,
     description,
     image,
     brand,
-    category,
+    price,
+    gst,
+    finalPrice,
     countInStock,
+    returnable,
+    refundable
   } = req.body
 
   const product = await Product.findById(req.params.id)
 
   if (product) {
     product.name = name
-    product.price = price
+    product.category = category
     product.description = description
     product.image = image
     product.brand = brand
-    product.category = category
+    product.price = price
+    product.gst = gst
+    product.finalPrice = finalPrice
     product.countInStock = countInStock
-
+    product.returnable = returnable
+    product.refundable = refundable
     const updatedProduct = await product.save()
     res.json(updatedProduct)
   } else {

@@ -61,9 +61,29 @@ const ProductScreen = ({ history, match }) =>
                                             <Row>
                                                 <Col>
                                                     Price:
-                                    </Col>
+                                                </Col>
                                                 <Col>
                                                     <strong>₹ {product.price} </strong>
+                                                </Col>
+                                            </Row>
+                                        </ListGroup.Item>
+                                        <ListGroup.Item>
+                                            <Row>
+                                                <Col>
+                                                    GST:
+                                                </Col>
+                                                <Col>
+                                                    <strong>{product.gst} % </strong>
+                                                </Col>
+                                            </Row>
+                                        </ListGroup.Item>
+                                        <ListGroup.Item>
+                                            <Row>
+                                                <Col>
+                                                    Final Price:
+                                                </Col>
+                                                <Col>
+                                                    <strong>₹ {product.finalPrice} </strong>
                                                 </Col>
                                             </Row>
                                         </ListGroup.Item>
@@ -107,7 +127,19 @@ const ProductScreen = ({ history, match }) =>
                                                 disabled={product.countInStock === 0}
                                             >
                                                 Add to Cart
-                                </Button>
+                                            </Button>
+                                        </ListGroup.Item>
+                                        <ListGroup.Item>
+                                            {product.returnable
+                                                ? <Message>Returnable</Message>
+                                                : <Message>Not Returnable</Message>
+                                            }
+                                        </ListGroup.Item>
+                                        <ListGroup.Item>
+                                            {product.returnable
+                                                ? <Message>Refundable</Message>
+                                                : <Message>Not Refundable</Message>
+                                            }
                                         </ListGroup.Item>
                                     </ListGroup>
                                 </Card>

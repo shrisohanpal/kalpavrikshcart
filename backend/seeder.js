@@ -42,14 +42,14 @@ const importData = async () =>
 
         const sampleShops = shops.map((shop) =>
         {
-            return { ...shop, user: adminUser, category: cat1 }
+            return { ...shop, user: adminUser, category: 'cat1' }
         })
 
         await Shop.insertMany(sampleShops)
 
         const sampleProducts = products.map((product) =>
         {
-            return { ...product, user: adminUser, category: cat1 }
+            return { ...product, user: adminUser, category: 'cat1' }
         })
 
         await Product.insertMany(sampleProducts)

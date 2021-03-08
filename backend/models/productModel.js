@@ -34,11 +34,29 @@ const productSchema = mongoose.Schema({
         required: true,
         default: 0
     },
+    gst: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    finalPrice: {
+        type: Number,
+        required: true,
+        default: 0
+    },
     countInStock: {
         type: Number,
         required: true,
         default: 0
-    }
+    },
+    returnable: {
+        type: Boolean,
+        default: false
+    },
+    refundable: {
+        type: Boolean,
+        default: false
+    },
 }, {
     timestamps: true
 })

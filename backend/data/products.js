@@ -10,6 +10,10 @@ const products = [
         countInStock: 3,
         rating: 1,
         numReviews: 0,
+        gst: 20,
+        finalPrice: 960,
+        refundable: true,
+        returnable: true,
     },
     {
         name: 'iPhone 11 Pro 256GB Memory',
@@ -22,6 +26,8 @@ const products = [
         countInStock: 10,
         rating: 1.5,
         numReviews: 0,
+        gst: 20,
+        finalPrice: 840,
     },
     {
         name: 'Cannon EOS 80D DSLR Camera',
@@ -34,6 +40,10 @@ const products = [
         countInStock: 1,
         rating: 2,
         numReviews: 0,
+        gst: 20,
+        finalPrice: 600,
+        refundable: true,
+        returnable: true,
     },
     {
         name: 'Sony Playstation 4 Pro White Version',
@@ -46,6 +56,8 @@ const products = [
         countInStock: 10,
         rating: 2.5,
         numReviews: 0,
+        gst: 20,
+        finalPrice: 480
     }
 ]
 

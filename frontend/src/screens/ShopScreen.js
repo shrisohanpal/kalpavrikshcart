@@ -38,7 +38,18 @@ const ShopScreen = ({ history, match }) =>
                     (
                         <Row>
                             <Col md={6}>
-                                <Image src={shop.image} alt={shop.name} fluid />
+                                <Image src={shop.image} alt={shop.name} className='h-1' fluid />
+                                <ListGroup>
+                                    <ListGroup.Item>
+                                        Phone: {shop.phone}
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        Email: {shop.email}
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        Address: {shop.address}
+                                    </ListGroup.Item>
+                                </ListGroup>
                             </Col>
                             <Col md={3}>
                                 <ListGroup variant='flush'>
@@ -46,10 +57,16 @@ const ShopScreen = ({ history, match }) =>
                                         <h3>{shop.name}</h3>
                                     </ListGroup.Item>
                                     <ListGroup.Item>
-                                        Shop Details
+                                        Caterory: {shop.category}
                                     </ListGroup.Item>
                                     <ListGroup.Item>
-                                        Address: {shop.address}
+                                        Aadhar: {shop.aadharNumber}
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        PAN: {shop.panNumber}
+                                    </ListGroup.Item>
+                                    <ListGroup.Item>
+                                        GST: {shop.gstNumber}
                                     </ListGroup.Item>
                                     <ListGroup.Item>
                                         Description: {shop.description}
@@ -57,7 +74,7 @@ const ShopScreen = ({ history, match }) =>
                                 </ListGroup>
                             </Col>
                             <Col md={3}>
-                                <GoogleMapReact
+                                <GoogleMapReact style={{ height: 100 }}
                                     defaultCenter={{ lat: 59.95, lng: 30.33 }}
                                     defaultZoom={11}
                                 />
