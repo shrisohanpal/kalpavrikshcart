@@ -41,12 +41,6 @@ const ShopScreen = ({ history, match }) =>
                                 <Image src={shop.image} alt={shop.name} className='h-1' fluid />
                                 <ListGroup>
                                     <ListGroup.Item>
-                                        Phone: {shop.phone}
-                                    </ListGroup.Item>
-                                    <ListGroup.Item>
-                                        Email: {shop.email}
-                                    </ListGroup.Item>
-                                    <ListGroup.Item>
                                         Address: {shop.address}
                                     </ListGroup.Item>
                                 </ListGroup>
@@ -60,10 +54,10 @@ const ShopScreen = ({ history, match }) =>
                                         Caterory: {shop.category}
                                     </ListGroup.Item>
                                     <ListGroup.Item>
-                                        Aadhar: {shop.aadharNumber}
+                                        Phone: {shop.phone}
                                     </ListGroup.Item>
                                     <ListGroup.Item>
-                                        PAN: {shop.panNumber}
+                                        Email: {shop.email}
                                     </ListGroup.Item>
                                     <ListGroup.Item>
                                         GST: {shop.gstNumber}

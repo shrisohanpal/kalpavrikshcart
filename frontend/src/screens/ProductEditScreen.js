@@ -6,7 +6,7 @@ import { CircularProgress } from '@material-ui/core'
 import { useDispatch, useSelector } from 'react-redux'
 import Message from '../components/Message'
 import FormContainer from '../components/FormContainer'
-import { listProductDetails, updateProduct } from '../actions/productActions'
+import { listProductDetails, updateProduct, deleteProduct } from '../actions/productActions'
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants'
 
 const ProductEditScreen = ({ match, history }) =>
@@ -106,6 +106,14 @@ const ProductEditScreen = ({ match, history }) =>
         refundable
       })
     )
+  }
+
+  const deleteHandler = (id) =>
+  {
+    if (window.confirm('Are you sure')) {
+      dispatch(deleteProduct(id))
+      history.goBack()
+    }
   }
 
   return (
@@ -243,9 +251,14 @@ const ProductEditScreen = ({ match, history }) =>
               ></Form.Check>
             </Form.Group>
 
-            <Button type='submit' variant='primary'>
-              {product && product.name ? 'Update' : 'Create'}
-            </Button>
+            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Button type='submit' variant='primary'>
+                {product && product.name ? 'Update' : 'Create'}
+              </Button>
+              <Button variant='danger' onClick={() => deleteHandler(productId)}>
+                {product && product.name ? 'Remove' : 'Cancel'}
+              </Button>
+            </div>
           </Form>
         )}
       </FormContainer>
