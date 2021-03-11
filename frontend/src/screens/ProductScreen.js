@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Container, Row, Col, Image, ListGroup, Card, Button, Form } from 'react-bootstrap'
+import { Container, Row, Col, Image, ListGroup, Card, Button, Carousel, Form } from 'react-bootstrap'
 import { CircularProgress } from '@material-ui/core'
 import { listProductDetails } from '../actions/productActions'
 import Message from '../components/Message'
@@ -36,7 +36,17 @@ const ProductScreen = ({ history, match }) =>
                     (
                         <Row>
                             <Col md={6}>
-                                <Image src={product.image} alt={product.name} fluid />
+                                <Carousel pause='hover' className='bg-light' style={{ paddingTop: '0%' }} >
+                                    {product.image &&
+                                        product.image.map((x, k) => (
+                                            <Carousel.Item key={k}>
+                                                <div style={{ height: 400 }}>
+                                                    <Image style={{ display: 'block', width: '100%', height: '100%', borderRadius: '1%', margin: '0%' }} src={x} alt={product.name} fluid />
+                                                </div>
+                                            </Carousel.Item>
+                                        ))
+                                    }
+                                </Carousel>
                             </Col>
                             <Col md={3}>
                                 <ListGroup variant='flush'>

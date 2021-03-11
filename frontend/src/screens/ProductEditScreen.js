@@ -15,6 +15,8 @@ const ProductEditScreen = ({ match, history }) =>
 
   const [name, setName] = useState('')
   const [image, setImage] = useState('')
+  const [image2, setImage2] = useState('')
+  const [image3, setImage3] = useState('')
   const [brand, setBrand] = useState('')
   const [category, setCategory] = useState('')
   const [countInStock, setCountInStock] = useState(0)
@@ -51,7 +53,9 @@ const ProductEditScreen = ({ match, history }) =>
         dispatch(listProductDetails(productId))
       } else {
         setName(product.name)
-        setImage(product.image)
+        setImage(product.image[0])
+        setImage2(product.image[1])
+        setImage3(product.image[2])
         setBrand(product.brand)
         setCategory(product.category)
         setCountInStock(product.countInStock)
@@ -87,6 +91,54 @@ const ProductEditScreen = ({ match, history }) =>
     }
   }
 
+  const uploadFileHandler2 = async (e) =>
+  {
+    const file = e.target.files[0]
+    const formData = new FormData()
+    formData.append('image', file)
+    setUploading(true)
+
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+
+      const { data } = await axios.post('/api/upload', formData, config)
+
+      setImage2(data)
+      setUploading(false)
+    } catch (error) {
+      console.error(error)
+      setUploading(false)
+    }
+  }
+
+  const uploadFileHandler3 = async (e) =>
+  {
+    const file = e.target.files[0]
+    const formData = new FormData()
+    formData.append('image', file)
+    setUploading(true)
+
+    try {
+      const config = {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      }
+
+      const { data } = await axios.post('/api/upload', formData, config)
+
+      setImage3(data)
+      setUploading(false)
+    } catch (error) {
+      console.error(error)
+      setUploading(false)
+    }
+  }
+
   const submitHandler = (e) =>
   {
     e.preventDefault()
@@ -94,7 +146,7 @@ const ProductEditScreen = ({ match, history }) =>
       updateProduct({
         _id: productId,
         name,
-        image,
+        image: [image, image2, image3],
         brand,
         category,
         countInStock,
@@ -156,6 +208,38 @@ const ProductEditScreen = ({ match, history }) =>
                 onChange={uploadFileHandler}
               ></Form.File>
               {uploading && <CircularProgress />}
+            </Form.Group>
+
+            <Form.Group controlId='image2'>
+              <Form.Label>Image2</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter image url'
+                value={image2}
+                onChange={(e) => setImage2(e.target.value)}
+              ></Form.Control>
+              <Form.File
+                id='image-file'
+                label='Choose File'
+                custom
+                onChange={uploadFileHandler2}
+              ></Form.File>
+            </Form.Group>
+
+            <Form.Group controlId='image3'>
+              <Form.Label>Image3</Form.Label>
+              <Form.Control
+                type='text'
+                placeholder='Enter image url'
+                value={image3}
+                onChange={(e) => setImage3(e.target.value)}
+              ></Form.Control>
+              <Form.File
+                id='image-file'
+                label='Choose File'
+                custom
+                onChange={uploadFileHandler3}
+              ></Form.File>
             </Form.Group>
 
             <Form.Group controlId='brand'>

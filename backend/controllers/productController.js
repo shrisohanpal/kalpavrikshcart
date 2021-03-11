@@ -64,7 +64,7 @@ const createProduct = asyncHandler(async (req, res) =>
 {
   const product = new Product({
     user: req.user._id,
-    image: '/images/sample.jpg',
+    image: ['/uploads\\sample.jpg', '/uploads\\sample.jpg', '/uploads\\sample.jpg'],
   })
 
   const createdProduct = await product.save()
