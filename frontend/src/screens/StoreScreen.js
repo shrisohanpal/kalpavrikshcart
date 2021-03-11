@@ -75,7 +75,7 @@ const StoreScreen = ({ history }) =>
                 </Col>
             </Row>
             <center>
-                <Button type='button' onClick={createShopHandler}>Start Selling</Button>
+                <Button type='button' onClick={createShopHandler}>Register as a Seller</Button>
             </center>
         </Container>
     )

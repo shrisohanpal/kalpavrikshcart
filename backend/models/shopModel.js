@@ -19,6 +19,13 @@ const shopSchema = mongoose.Schema(
         address: {
             type: String,
         },
+
+        latitude: {
+            type: Number
+        },
+        longitude: {
+            type: Number
+        },
         aadharNumber: {
             type: String
         },

@@ -27,8 +27,11 @@ import OrderScreen from './screens/OrderScreen'
 // import ShopListScreen from './screens/ShopList'
 
 import ProductListScreen from './screens/ProductListScreen'
-
 import OrderListScreen from './screens/OrderListScreen'
+
+import VendorsProductListScreen from './screens/VendorsProductListScreen'
+import VendorsShopScreen from './screens/VendorsShopScreen'
+import VendorsOrderListScreen from './screens/VendorsOrderListScreen'
 
 const App = () =>
 {
@@ -44,7 +47,7 @@ const App = () =>
         <Route path='/profile' component={ProfileScreen} />
 
         <Route path='/store' component={StoreScreen} />
-        <Route path='/shop/:id' component={ShopScreen} />
+        <Route path='/shopscreen/:id' component={ShopScreen} />
         <Route path='/product/:id' component={ProductScreen} />
         <Route path='/cart/:id?' component={CartScreen} />
         <Route path='/shipping' component={ShippingScreen} />
@@ -61,6 +64,9 @@ const App = () =>
         <Route path='/admin/productlist' component={ProductListScreen} />
         <Route path='/admin/product/:id/edit' component={ProductEditScreen} />
         <Route path='/admin/orderlist' component={OrderListScreen} />
+        <Route path='/shop/productlist' component={VendorsProductListScreen} />
+        <Route path='/shop/shoplist' component={VendorsShopScreen} />
+        <Route path='/shop/orderlist' component={VendorsOrderListScreen} />
       </main>
       <Footer />
     </Router>

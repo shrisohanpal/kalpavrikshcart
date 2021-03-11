@@ -17,6 +17,8 @@ const ShopEditScreen = ({ match, history }) =>
   const [image, setImage] = useState('')
   const [category, setCategory] = useState('')
   const [address, setAddress] = useState('')
+  const [latitude, setLatitude] = useState(0)
+  const [longitude, setLongitude] = useState(0)
   const [aadharNumber, setAadharNumber] = useState('')
   const [panNumber, setPanNumber] = useState('')
   const [gstNumber, setGstNumber] = useState('')
@@ -50,6 +52,8 @@ const ShopEditScreen = ({ match, history }) =>
         setImage(shop.image)
         setCategory(shop.category)
         setAddress(shop.address)
+        setLatitude(shop.latitude)
+        setLongitude(shop.longitude)
         setAadharNumber(shop.aadharNumber)
         setPanNumber(shop.panNumber)
         setGstNumber(shop.gstNumber)
@@ -94,6 +98,8 @@ const ShopEditScreen = ({ match, history }) =>
         image,
         category,
         address,
+        latitude,
+        longitude,
         aadharNumber,
         panNumber,
         gstNumber,
@@ -102,6 +108,16 @@ const ShopEditScreen = ({ match, history }) =>
         description,
       })
     )
+  }
+
+  const handleLocation = () =>
+  {
+    navigator.geolocation.getCurrentPosition(function (position)
+    {
+      setLatitude(position.coords.latitude)
+      setLongitude(position.coords.longitude)
+      alert(`Location Added Successfully! \n Latitide: ${position.coords.latitude} \n Longitude: ${position.coords.longitude}`)
+    });
   }
 
   return (
@@ -164,6 +180,11 @@ const ShopEditScreen = ({ match, history }) =>
                 value={address}
                 onChange={(e) => setAddress(e.target.value)}
               ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='location'>
+              <Form.Label>Location</Form.Label>
+              <Button className='mx-3' onClick={handleLocation}>Add Location</Button>
             </Form.Group>
 
             <Form.Group controlId='aadhar'>

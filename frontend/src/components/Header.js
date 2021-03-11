@@ -21,6 +21,16 @@ const Header = () =>
         dispatch(listCategorys())
     }, [dispatch])
 
+    const getUserLocation = () =>
+    {
+        navigator.geolocation.getCurrentPosition(function (position)
+        {
+            console.log("Latitude is :", typeof (position.coords.latitude));
+            console.log("Longitude is :", position.coords.longitude);
+            alert(`Location is Captured Successfully! \n Latitude is : ${position.coords.latitude} \n Longitude is : ${position.coords.longitude}`)
+        });
+    }
+
     return (
         <header>
             <Container>
@@ -44,11 +54,11 @@ const Header = () =>
                         </Form>
                     </Col>
                     <Col md={3} className='my-2' style={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <LinkContainer to='/location'>
+                        <div onClick={getUserLocation}>
                             <Nav.Link>
                                 <i className='fas fa-map-marker-alt' style={{ fontSize: 30 }}></i>
                             </Nav.Link>
-                        </LinkContainer>
+                        </div>
                         <LinkContainer to={userInfo ? '/profile' : '/login'}>
                             <Nav.Link>
                                 <i className='fas fa-user' style={{ fontSize: 30 }}></i>

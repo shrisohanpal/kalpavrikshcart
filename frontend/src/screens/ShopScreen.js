@@ -69,7 +69,7 @@ const ShopScreen = ({ history, match }) =>
                             </Col>
                             <Col md={3}>
                                 <GoogleMapReact style={{ height: 100 }}
-                                    defaultCenter={{ lat: 59.95, lng: 30.33 }}
+                                    defaultCenter={{ lat: shop.latitude, lng: shop.longitude }}
                                     defaultZoom={11}
                                 />
                             </Col>

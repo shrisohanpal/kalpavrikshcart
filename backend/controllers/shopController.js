@@ -66,6 +66,8 @@ const updateShop = asyncHandler(async (req, res) =>
         image,
         category,
         address,
+        latitude,
+        longitude,
         aadharNumber,
         panNumber,
         gstNumber,
@@ -81,6 +83,8 @@ const updateShop = asyncHandler(async (req, res) =>
         shop.image = image
         shop.category = category
         shop.address = address
+        shop.latitude = latitude
+        shop.longitude = longitude
         shop.aadharNumber = aadharNumber
         shop.panNumber = panNumber
         shop.gstNumber = gstNumber

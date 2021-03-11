@@ -2,7 +2,8 @@ import jwt from 'jsonwebtoken'
 import asyncHandler from 'express-async-handler'
 import User from '../models/userModel.js'
 
-const protect = asyncHandler(async (req, res, next) => {
+const protect = asyncHandler(async (req, res, next) =>
+{
   let token
 
   if (
@@ -30,8 +31,9 @@ const protect = asyncHandler(async (req, res, next) => {
   }
 })
 
-const admin = (req, res, next) => {
-  if (req.user && req.user.isAdmin) {
+const admin = (req, res, next) =>
+{
+  if (req.user && (req.user.isAdmin || req.user.shop)) {
     next()
   } else {
     res.status(401)

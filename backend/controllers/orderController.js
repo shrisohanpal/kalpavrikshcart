@@ -33,10 +33,10 @@ const addOrderItems = asyncHandler(async (req, res) =>
       totalPrice,
     })
     const createdOrder = await order.save()
-    const odreredItem = orderItems[0]
-    const product = await Product.findById(odreredItem.product)
-    product.countInStock = product.countInStock - odreredItem.qty
-    await product.save()
+    // const odreredItem = orderItems[0]
+    // const product = await Product.findById(odreredItem.product)
+    // product.countInStock = product.countInStock - odreredItem.qty
+    // await product.save()
 
     res.status(201).json(createdOrder)
   }
