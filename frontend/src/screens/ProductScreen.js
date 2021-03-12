@@ -151,6 +151,12 @@ const ProductScreen = ({ history, match }) =>
                                                 : <Message>Not Refundable</Message>
                                             }
                                         </ListGroup.Item>
+                                        <ListGroup.Item>
+                                            {product.exchange === 0
+                                                ? <Message>No Exchange</Message>
+                                                : <Message>Exchange with in {product.exchange} days</Message>
+                                            }
+                                        </ListGroup.Item>
                                     </ListGroup>
                                 </Card>
                             </Col>

@@ -26,6 +26,7 @@ const ProductEditScreen = ({ match, history }) =>
   const [finalPrice, setFinalPrice] = useState(0)
   const [returnable, setReturnable] = useState(false)
   const [refundable, setRefundable] = useState(false)
+  const [exchange, setExchange] = useState(0)
   const [uploading, setUploading] = useState(false)
 
   const dispatch = useDispatch()
@@ -63,6 +64,9 @@ const ProductEditScreen = ({ match, history }) =>
         setPrice(product.price)
         setGst(product.gst)
         setFinalPrice(product.finalPrice)
+        setReturnable(product.returnable)
+        setRefundable(product.refundable)
+        setExchange(product.exchange)
       }
     }
   }, [dispatch, history, productId, product, successUpdate])
@@ -155,7 +159,8 @@ const ProductEditScreen = ({ match, history }) =>
         gst,
         finalPrice,
         returnable,
-        refundable
+        refundable,
+        exchange
       })
     )
   }
@@ -314,6 +319,16 @@ const ProductEditScreen = ({ match, history }) =>
                 placeholder='Enter final price'
                 value={finalPrice}
                 onChange={(e) => setFinalPrice(e.target.value)}
+              ></Form.Control>
+            </Form.Group>
+
+            <Form.Group controlId='exchange'>
+              <Form.Label>Exchange Validity in days ( 0 means no exchange)</Form.Label>
+              <Form.Control
+                type='number'
+                placeholder='Enter exchange validity'
+                value={exchange}
+                onChange={(e) => setExchange(e.target.value)}
               ></Form.Control>
             </Form.Group>
 

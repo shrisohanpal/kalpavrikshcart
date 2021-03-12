@@ -58,6 +58,10 @@ const productSchema = mongoose.Schema({
         type: Boolean,
         default: false
     },
+    exchange: {
+        type: Number,
+        default: 0
+    }
 }, {
     timestamps: true
 })

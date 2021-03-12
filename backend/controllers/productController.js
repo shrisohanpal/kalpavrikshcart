@@ -87,7 +87,8 @@ const updateProduct = asyncHandler(async (req, res) =>
     finalPrice,
     countInStock,
     returnable,
-    refundable
+    refundable,
+    exchange
   } = req.body
 
   const product = await Product.findById(req.params.id)
@@ -104,6 +105,7 @@ const updateProduct = asyncHandler(async (req, res) =>
     product.countInStock = countInStock
     product.returnable = returnable
     product.refundable = refundable
+    product.exchange = exchange
     const updatedProduct = await product.save()
     res.json(updatedProduct)
   } else {

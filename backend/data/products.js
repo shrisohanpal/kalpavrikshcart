@@ -14,6 +14,7 @@ const products = [
         finalPrice: 960,
         refundable: true,
         returnable: true,
+        exchange: 10,
     },
     {
         name: 'iPhone 11 Pro 256GB Memory',
@@ -28,6 +29,7 @@ const products = [
         numReviews: 0,
         gst: 20,
         finalPrice: 840,
+        exchange: 30,
     },
     {
         name: 'Cannon EOS 80D DSLR Camera',
@@ -57,7 +59,8 @@ const products = [
         rating: 2.5,
         numReviews: 0,
         gst: 20,
-        finalPrice: 480
+        finalPrice: 480,
+        exchange: 7
     }
 ]
 
